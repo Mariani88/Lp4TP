@@ -1,0 +1,6 @@
+1- Tengan siempre actualizado el Android Studio a la ultima version, incluido 
+los repositorios. 
+2- Revisen siempre los errores arrojados por Gradle. Muchas veces no es problema
+por errores de compilacion, sino de alguna dependencia faltante.
+3- Usen la API 15 si o si
+
