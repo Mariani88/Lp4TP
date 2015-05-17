@@ -14,5 +14,14 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Datos Usuario"
+        android:id="@+id/btn_register_user"
+        android:layout_below="@+id/botonActivarAlarma"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="89dp" />
+
 
 </RelativeLayout>

@@ -18,4 +18,7 @@
     <string name="procesoDeEnvio">Enviando SMS de auxilio</string>
     <string name="avisoSMSEnviado">¡¡¡SMS enviado!!!</string>
     <string name="cancelarConSMS">Falsa alarma, enviar SMS de aviso</string>
+
+    <string name="Ingrese_su_nombre">Ingrese su nombre</string>
+    <string name="Ingrese_su_edad">Ingrese su edad</string>
 </resources>

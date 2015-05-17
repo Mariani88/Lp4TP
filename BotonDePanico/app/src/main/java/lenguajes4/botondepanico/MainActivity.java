@@ -17,12 +17,19 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         Button botonActivarAlarma = (Button)findViewById(R.id.botonActivarAlarma);
-
+        Button botonRegistrarUsuario = (Button)findViewById(R.id.btn_register_user);
         botonActivarAlarma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (MainActivity.this,
                         ProcesoDeActivacionActivity.class );
+                startActivity(intent);
+            }
+        });
+        botonRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,DatosUsuario.class);
                 startActivity(intent);
             }
         });
