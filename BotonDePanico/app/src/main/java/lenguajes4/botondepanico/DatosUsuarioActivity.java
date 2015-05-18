@@ -1,10 +1,13 @@
 package lenguajes4.botondepanico;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.app.Activity;
 import android.widget.EditText;
@@ -30,10 +33,15 @@ public class DatosUsuarioActivity extends Activity {
         String info_user = "Nombre=" + nombreUsuario.getText().toString() + "\n" + "Edad=" + edadUsuario.getText().toString();
 
         try{
-            FileOutputStream fileOp = openFileOutput("datosUsuario.txt", MODE_PRIVATE);
-            OutputStreamWriter escritor = new OutputStreamWriter(fileOp);
+            File root = new File(Environment.getExternalStorageDirectory(), "Notes");
+            if (!root.exists()) {
+                root.mkdirs();
+            }
 
-            escritor.write(info_user);
+            File gpxfile = new File(root, "datosUsuario.txt");
+            FileWriter escritor = new FileWriter(gpxfile);
+
+            escritor.append(info_user);
             escritor.flush();
             escritor.close();
 
