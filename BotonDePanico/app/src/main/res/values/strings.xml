@@ -1,19 +1,20 @@
 <resources>
-    <string name="app_name">BotonDePanico</string>
 
+    <string name="app_name">BotonDePanico</string>
+    <string name="title_activity_main">Botón de Pánico</string>
     <string name="botonActivar">Activar alarma</string>
     <string name="action_settings">Settings</string>
 
-    <string name="title_activity_proceso_de_activacion">ProcesoDeActivacionActivity</string>
+    <string name="title_activity_proceso_de_activacion">Activación</string>
 
     <!--Activación de alarma  -->
-    <string name="title_activity_cancelar">CancelarActivity</string>
+    <string name="title_activity_cancelar">Cancelar alarma</string>
     <string name="alarmaCancelada">Alarma cancelada</string>
     <string name="alarmaActivada">Alarma activada</string>
     <string name="cancelarAlarma">Cancelar alarma</string>
 
     <!--Envio de SMS  -->
-    <string name="title_activity_envio_de_sms">EnvioDeSMSActivity</string>
+    <string name="title_activity_envio_de_sms">Envío de SMS</string>
     <string name="procesoDeEnvio">Enviando SMS de auxilio</string>
     <string name="avisoSMSEnviado">¡¡¡SMS enviado!!!</string>
     <string name="envioSMS">Confirmar con envio de SMS a un amigo</string>
