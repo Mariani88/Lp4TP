@@ -25,7 +25,8 @@
         android:text="Teléfono"
         android:layout_below="@+id/contactPic"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -66,9 +67,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/centerPoint"
-        android:layout_below="@+id/contactPhone"
         android:layout_alignRight="@+id/enviandoSMSLabel"
-        android:layout_alignEnd="@+id/enviandoSMSLabel" />
+        android:layout_alignEnd="@+id/enviandoSMSLabel"
+        android:layout_below="@+id/contactPhone" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
