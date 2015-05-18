@@ -12,7 +12,7 @@ import android.widget.Toast;
 /**
  * Created by Walter on 17/05/2015.
  */
-public class DatosUsuario extends Activity {
+public class DatosUsuarioActivity extends Activity {
 
     private EditText nombreUsuario;
     private EditText edadUsuario;
@@ -27,7 +27,7 @@ public class DatosUsuario extends Activity {
     }
 
     public void onClickGuardar(View v){
-        String info_user = nombreUsuario.getText().toString() +"\n"+ edadUsuario.getText().toString();
+        String info_user = "Nombre=" + nombreUsuario.getText().toString() + "\n" + "Edad=" + edadUsuario.getText().toString();
 
         try{
             FileOutputStream fileOp = openFileOutput("datosUsuario.txt", MODE_PRIVATE);
