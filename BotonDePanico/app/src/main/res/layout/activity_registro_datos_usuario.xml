@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/btn_save_data_user"
-        android:onClick=".onClickGuardar"
+        android:onClick="onClickGuardar"
         android:layout_below="@+id/user_data_edad"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="131dp" />
