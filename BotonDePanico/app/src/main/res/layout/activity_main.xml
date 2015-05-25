@@ -21,7 +21,7 @@
         android:id="@+id/btn_register_user"
         android:layout_below="@+id/botonActivarAlarma"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp" />
+        android:layout_marginTop="30dp" />
 
 
 </RelativeLayout>

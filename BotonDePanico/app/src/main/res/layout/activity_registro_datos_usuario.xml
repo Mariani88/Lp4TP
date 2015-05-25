@@ -6,19 +6,30 @@
     android:layout_height="match_parent"
     tools:context="lenguajes4.botondepanico.DatosUsuarioActivity">
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Ingrese_su_nombre"
+        android:textSize="25dp"
+        android:id="@+id/IngresarNombreLabel" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="@string/Ingrese_su_nombre"
         android:ems="10"
         android:id="@+id/user_data_nombre"
-        android:layout_marginTop="48dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/IngresarNombreLabel" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Ingrese_su_edad"
+        android:textSize="25dp"
+        android:id="@+id/edadLabel"
+        android:layout_below="@+id/user_data_nombre"
+        android:layout_marginTop="25dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -26,13 +37,8 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/user_data_edad"
-        android:layout_below="@+id/user_data_nombre"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="48dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:text="@string/Ingrese_su_edad" />
+        android:layout_below="@+id/edadLabel"/>
+
 
     <Button
         android:layout_width="wrap_content"
