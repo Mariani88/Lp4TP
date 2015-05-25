@@ -22,6 +22,11 @@
     <string name="selectionButton">Seleccionar Contacto</string>
     <string name="sendButton">Enviar</string>
     <string name="textoAEnviar">¡Estoy en problemas ayuda!</string>
+    <string name="enviandoMnsj">Enviando mensaje</string>
+    <string name="mnsjAlerta">Estoy en problemas ayuda!!</string>
+    <string name="mnsjEnviado">Mensaje enviado</string>
+    <string name="primeroSeleccioneUnContacto">Primero seleccione un contacto</string>
+    <string name="guardado">Guardado</string>
 
     <!--Ingreso de datos  -->
     <string name="title_activity_datos_usuario">Registración de Datos</string>

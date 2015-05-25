@@ -113,10 +113,10 @@ public class EnvioDeSMSActivity extends Activity {
         /*
         Enviando el mensaje
          */
-        Toast.makeText(this, "Enviando mensaje", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.enviandoMnsj), Toast.LENGTH_LONG).show();
         if (contactUri != null) {
             if (message == "") {
-                message = "Estoy en problemas ayuda";
+                message = getString(R.string.mnsjAlerta);
             }
             smsManager.sendTextMessage(
                     getPhone(contactUri),
@@ -125,9 +125,9 @@ public class EnvioDeSMSActivity extends Activity {
                     null,
                     null);
 
-            Toast.makeText(this, "Mensaje Enviado", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.mnsjEnviado), Toast.LENGTH_LONG).show();
         } else
-            Toast.makeText(this, "Selecciona un contacto primero", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.primeroSeleccioneUnContacto), Toast.LENGTH_LONG).show();
 
 
     }

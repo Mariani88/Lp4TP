@@ -45,7 +45,7 @@ public class DatosUsuarioActivity extends Activity {
             escritor.flush();
             escritor.close();
 
-            Toast.makeText(getBaseContext(),"Guardado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(),getString(R.string.guardado), Toast.LENGTH_SHORT).show();
 
 
         }
