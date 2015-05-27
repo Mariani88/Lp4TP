@@ -23,15 +23,14 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.StringTokenizer;
 
 
 //Para obtener contacto
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 
 //Para leer archivo usuario
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+
 
 public class EnvioDeSMSActivity extends Activity {
 
@@ -93,13 +92,14 @@ public class EnvioDeSMSActivity extends Activity {
         /*
         Setear valores
          */
+
         contactName.setText(getName(uri));
         contactPhone.setText(getPhone(uri));
 
         contactPic.setImageBitmap(getPhoto(uri));
     }
 
-    public void sendMessage(View v) {
+    public void sendMessage() {
         /*
         Guardo el mensaje que se encuentra grabado en el formulario del envioSMS
          */
@@ -116,7 +116,7 @@ public class EnvioDeSMSActivity extends Activity {
         Toast.makeText(this, getString(R.string.enviandoMnsj), Toast.LENGTH_LONG).show();
         if (contactUri != null) {
             if (message == "") {
-                message = getString(R.string.mnsjAlerta);
+               message = getString(R.string.mnsjAlerta);
             }
             smsManager.sendTextMessage(
                     getPhone(contactUri),
@@ -128,8 +128,6 @@ public class EnvioDeSMSActivity extends Activity {
             Toast.makeText(this, getString(R.string.mnsjEnviado), Toast.LENGTH_LONG).show();
         } else
             Toast.makeText(this, getString(R.string.primeroSeleccioneUnContacto), Toast.LENGTH_LONG).show();
-
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
@@ -143,8 +141,68 @@ public class EnvioDeSMSActivity extends Activity {
                 Procesar la Uri
                  */
                 renderContact(contactUri);
+                setContactoEnviado(contactUri);
+
             }
         }
+    }
+    public void setContactoEnviado(Uri uri){
+        String nombre = getName(uri);
+        String telefono = getPhone(uri);
+        String info_user = "Nombre="+ nombre + "\n" + "Telefono="+ telefono;
+        ArchivosDeDatos guardar = new ArchivosDeDatos();
+        if (guardar.guardarDatos(info_user, getString(R.string.usuariosEnviados))) {
+            Toast.makeText(this, getString(R.string.msjeContactoEnviadoGuardado), Toast.LENGTH_LONG).show();
+        } else{
+            Toast.makeText(this, getString(R.string.msjecontactoEnviadoNoGuardado), Toast.LENGTH_LONG).show();
+        }
+    }
+    public void getContactoEnviado(View v){
+        // Recuperamos el contacto al cual le enviamos
+        String info_user ;
+        ArchivosDeDatos guardar = new ArchivosDeDatos();
+
+        // Si trajo los datos del archivo separo los datos
+        if ((info_user=guardar.leerDatos(getString(R.string.usuariosEnviados)))!="") {
+            dividirNombreYTelefono(info_user);
+
+                Toast.makeText(this, getString(R.string.msjeContactoEnviadoGuardado), Toast.LENGTH_LONG).show();
+        } else{
+            Toast.makeText(this, getString(R.string.msjecontactoEnviadoNoGuardado), Toast.LENGTH_LONG).show();
+        }
+
+        // Seteamos el nuevo mensaje
+        TextView messageBody = (TextView) findViewById(R.id.messageBody);
+        messageBody.setText(getString(R.string.falsaAlarma));
+        // enviamos el mensaje
+        sendMessage();
+
+    }
+    public String dividirNombreYTelefono(String texto) {
+        TextView contactName = (TextView) findViewById(R.id.contactName);
+        TextView contactPhone = (TextView) findViewById(R.id.contactPhone);
+
+        StringTokenizer st = new StringTokenizer(texto, "\n");
+        String datos= "";
+        while(st.hasMoreTokens()) {
+            String dato = st.nextToken();
+            StringTokenizer st2 = new StringTokenizer(dato, "=");
+           while(st2.hasMoreTokens()) {
+                String clave = st2.nextToken();
+                String valor = st2.nextToken();
+               datos = datos + "\n" + valor;
+                /*
+        Setear valores
+         */
+               if (clave.indexOf("Telefono")>=0){
+                   contactPhone.setText(valor);
+               }else if (clave.indexOf("Nombre")>=0) {
+                   contactName.setText(valor);
+               }
+
+            }
+        }
+        return datos;
     }
 
     private String getPhone(Uri uri) {
@@ -233,19 +291,6 @@ public class EnvioDeSMSActivity extends Activity {
         return name;
     }
 
-    /**
-     * private String getNombreUsuario{
-     * FileInputStream archivoUsuario = new FileInputStream();
-     * Pattern pat = Pattern.compile("Nombre=");
-     * Matcher mat = pat.matcher(cadena);
-     * if (mat.matches()) {
-     * System.out.println("SI");
-     * } else {
-     * System.out.println("NO");
-     * }
-     * <p/>
-     * }
-     */
     private Bitmap getPhoto(Uri uri) {
         /*
         Foto del contacto y su id
@@ -287,8 +332,9 @@ public class EnvioDeSMSActivity extends Activity {
                 input.close();
             }
 
-        } catch (IOException iox) { /* Manejo de errores */ }
-        Toast.makeText(this, "No se puede mostrar la foto del contacto", Toast.LENGTH_LONG).show();
+        } catch (IOException iox) { /* Manejo de errores */
+            Toast.makeText(this, getString(R.string.mnsjSinFoto), Toast.LENGTH_LONG).show();
+        }
         return photo;
     }
 

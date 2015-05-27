@@ -26,11 +26,21 @@
     <string name="mnsjAlerta">Estoy en problemas ayuda!!</string>
     <string name="mnsjEnviado">Mensaje enviado</string>
     <string name="primeroSeleccioneUnContacto">Primero seleccione un contacto</string>
-    <string name="guardado">Guardado</string>
+    <string name="mnsjSinFoto">No se puede mostrar la foto del contacto</string>
 
     <!--Ingreso de datos  -->
     <string name="title_activity_datos_usuario">Registración de Datos</string>
     <string name="Ingrese_su_nombre">Ingrese su nombre</string>
     <string name="Ingrese_su_edad">Ingrese su edad</string>
+    <string name="msjeGuardado">Guardado</string>
+    <string name="msjeNoGuardado">El usuario no fue guardado</string>
+
+    <!--Archivos  -->
+    <string name="datosUsuario">datosUsuario.txt</string>
+    <string name="usuariosEnviados">usuariosEnviados.txt</string>
+    <string name="msjeContactoEnviadoGuardado">Se ha guardado el usuario notificado para poder cancelar luego</string>
+    <string name="msjecontactoEnviadoNoGuardado">No se ha guardado el usuario notificado</string>
+    <string name="falsaAlarma">Fue una falsa alarma, gracias de todas formas</string>
+
 
 </resources>
