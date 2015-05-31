@@ -49,5 +49,5 @@
         android:onClick="onClickGuardar"
         android:layout_below="@+id/user_data_edad"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="131dp" />
+        android:layout_marginTop="13dp" />
 </RelativeLayout>
