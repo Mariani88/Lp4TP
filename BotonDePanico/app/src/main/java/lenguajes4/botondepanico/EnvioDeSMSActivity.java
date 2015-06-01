@@ -99,7 +99,7 @@ public class EnvioDeSMSActivity extends Activity {
         contactPic.setImageBitmap(getPhoto(uri));
     }
 
-    public void sendMessage() {
+    public void sendMessage(View v) {
         /*
         Guardo el mensaje que se encuentra grabado en el formulario del envioSMS
          */
@@ -175,7 +175,7 @@ public class EnvioDeSMSActivity extends Activity {
         TextView messageBody = (TextView) findViewById(R.id.messageBody);
         messageBody.setText(getString(R.string.falsaAlarma));
         // enviamos el mensaje
-        sendMessage();
+        sendMessage(messageBody);
 
     }
     public String dividirNombreYTelefono(String texto) {
