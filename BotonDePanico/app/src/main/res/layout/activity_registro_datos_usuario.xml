@@ -8,29 +8,40 @@
     android:background="@drawable/fondo">
 
 
-    <TextView
+    <EditText
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Ingrese_su_nombre"
-        android:textSize="25dp"
-        android:id="@+id/IngresarNombreLabel" />
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/user_data_nombre"
+        android:text="Nombre"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/user_data_nombre"
-        android:layout_below="@+id/IngresarNombreLabel" />
+        android:id="@+id/user_data_apellido"
+        android:layout_below="@+id/user_data_nombre"
+        android:layout_alignRight="@+id/user_data_nombre"
+        android:layout_alignEnd="@+id/user_data_nombre"
+        android:text="Apellido"
+        android:layout_centerHorizontal="true"/>
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Ingrese_su_edad"
-        android:textSize="25dp"
-        android:id="@+id/edadLabel"
-        android:layout_below="@+id/user_data_nombre"
-        android:layout_marginTop="25dp"/>
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/user_data_telefono"
+        android:layout_below="@+id/user_data_apellido"
+        android:layout_alignRight="@+id/user_data_apellido"
+        android:layout_alignEnd="@+id/user_data_apellido"
+        android:text="Telefono"
+        android:layout_centerHorizontal="true"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -38,7 +49,12 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/user_data_edad"
-        android:layout_below="@+id/edadLabel"/>
+        android:layout_below="@+id/user_data_telefono"
+        android:layout_alignRight="@+id/user_data_telefono"
+        android:layout_alignEnd="@+id/user_data_telefono"
+        android:text="Edad"
+        android:layout_centerHorizontal="true"/>
+    />
 
 
     <Button
@@ -47,7 +63,8 @@
         android:text="Guardar"
         android:id="@+id/btn_save_data_user"
         android:onClick="onClickGuardar"
-        android:layout_below="@+id/user_data_edad"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp" />
+        android:layout_marginBottom="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
