@@ -38,12 +38,9 @@
             android:label="@string/title_activity_datos_usuario" >
         </activity>
         <activity
-            android:name=".opcionAgregarAmigos"
-            android:label="@string/title_activity_opcion_agregar_amigos" >
-        </activity>
-        <activity
             android:name=".OpcionAgregarAmigos"
-            android:label="@string/title_activity_opcion_agregar_amigos" >
+            android:label="@string/title_activity_opcion_agregar_amigos"
+            android:screenOrientation="portrait">>
         </activity>
     </application>
 

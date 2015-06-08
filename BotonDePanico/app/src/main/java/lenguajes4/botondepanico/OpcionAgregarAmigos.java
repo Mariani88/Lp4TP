@@ -229,6 +229,7 @@ public class OpcionAgregarAmigos extends Activity {
         try{
             ObjectInputStream ois = new ObjectInputStream( new FileInputStream(archivoAmigos) );
             this.amigos = (List<Amigo>)ois.readObject();
+            ois.close();
         }catch (IOException e){
             e.printStackTrace();
         }catch ( ClassNotFoundException e){
@@ -247,6 +248,7 @@ public class OpcionAgregarAmigos extends Activity {
         try{
             ObjectOutputStream oos = new ObjectOutputStream( new FileOutputStream( archivoAmigos));
             oos.writeObject(this.amigos);
+            oos.close();
         }catch (FileNotFoundException e){
             e.printStackTrace();
         }catch (IOException e){
