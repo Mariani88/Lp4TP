@@ -53,7 +53,11 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.opcionAgregarAmigos) {
+
+            Intent intent = new Intent(MainActivity.this, OpcionAgregarAmigos.class);
+            startActivity(intent);
+
             return true;
         }
 
