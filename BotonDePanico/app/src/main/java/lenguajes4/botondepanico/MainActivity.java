@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         botonRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DatosUsuarioActivity.class);
+                Intent intent = new Intent(MainActivity.this, RegistrarUsuarioActivity.class);
                 startActivity(intent);
             }
         });
