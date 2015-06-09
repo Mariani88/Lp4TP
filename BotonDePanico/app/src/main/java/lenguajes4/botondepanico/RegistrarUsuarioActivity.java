@@ -29,6 +29,7 @@ public class RegistrarUsuarioActivity extends Activity {
     EditText inputNombre;
     EditText inputApellido;
     EditText inputTelefono;
+    EditText inputEdad;
 
     // url to create new user
     private static String url_create_user = "http://botondepanico.net63.net/android_connect/create_user.php";
@@ -45,6 +46,7 @@ public class RegistrarUsuarioActivity extends Activity {
         inputNombre = (EditText) findViewById(R.id.user_data_nombre);
         inputApellido = (EditText) findViewById(R.id.user_data_apellido);
         inputTelefono = (EditText) findViewById(R.id.user_data_telefono);
+        inputEdad = (EditText) findViewById(R.id.user_data_edad);
 
        }
 
@@ -77,16 +79,17 @@ public class RegistrarUsuarioActivity extends Activity {
          * Creating user
          * */
         protected String doInBackground(String... args) {
-            String name = inputNombre.getText().toString();
-            String price = inputApellido.getText().toString();
-            String description = inputTelefono.getText().toString();
+            String nombre = inputNombre.getText().toString();
+            String apellido = inputApellido.getText().toString();
+            String telefono = inputTelefono.getText().toString();
+            String edad = inputTelefono.getText().toString();
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("nombre", name));
-            params.add(new BasicNameValuePair("apellido", price));
-            params.add(new BasicNameValuePair("telefono", description));
-            params.add(new BasicNameValuePair("coordenadas", "123456"));
+            params.add(new BasicNameValuePair("nombre", nombre));
+            params.add(new BasicNameValuePair("apellido", apellido));
+            params.add(new BasicNameValuePair("telefono", telefono));
+            params.add(new BasicNameValuePair("edad", edad));
 
 
             // getting JSON Object
@@ -102,13 +105,14 @@ public class RegistrarUsuarioActivity extends Activity {
                 int success = json.getInt(TAG_SUCCESS);
 
                 if (success == 1) {
-                    // successfully created user
 
-                    //Toast.makeText(getApplicationContext(), "Data saved", Toast.LENGTH_LONG).show();
+                    //IMPORTANTE: Devolver mensaje de Registrado Exitosamente
 
                 } else {
+
                     // failed to create user
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
