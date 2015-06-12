@@ -2,6 +2,7 @@ package lenguajes4.botondepanico;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -11,30 +12,39 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+    //Variable global para chequear que la registracion se haga al comienzo de la applicacion
+    boolean usuarioRegistrado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
+        usuarioRegistrado = prefs.GetPreferences("UsuarioRegistrado");
 
-        Button botonActivarAlarma = (Button)findViewById(R.id.botonActivarAlarma);
-        Button botonRegistrarUsuario = (Button)findViewById(R.id.btn_register_user);
-        botonActivarAlarma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (MainActivity.this,
-                        ProcesoDeActivacionActivity.class );
-                startActivity(intent);
-            }
-        });
-        botonRegistrarUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, RegistrarUsuarioActivity.class);
-                startActivity(intent);
-            }
-        });
+        Intent intent;
 
 
+        if (usuarioRegistrado==true) {
+
+            setContentView(R.layout.activity_main);
+            Button botonActivarAlarma = (Button) findViewById(R.id.botonActivarAlarma);
+            botonActivarAlarma.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, ProcesoDeActivacionActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
+        else {
+
+            setContentView(R.layout.activity_registro_datos_usuario);
+            intent = new Intent(MainActivity.this, RegistracionActivity.class);
+            startActivity(intent);
+
+
+        }
 
     }
 
@@ -47,20 +57,21 @@ public class MainActivity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        // Handle item selection
+        Intent intent;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.opcionAgregarAmigos) {
-
-            Intent intent = new Intent(MainActivity.this, OpcionAgregarAmigos.class);
-            startActivity(intent);
-
-            return true;
+        switch (item.getItemId()) {
+            case R.id.opcionAgregarAmigos:
+                intent = new Intent(MainActivity.this, OpcionAgregarAmigos.class);
+                startActivity(intent);
+                return true;
+            case R.id.opcionModificarRegistroDeUsuario:
+                intent = new Intent(MainActivity.this, RegistracionActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
+
 }

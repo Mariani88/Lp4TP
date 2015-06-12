@@ -35,7 +35,7 @@
             android:label="@string/title_activity_envio_de_sms" >
         </activity>
         <activity
-            android:name=".RegistrarUsuarioActivity"
+            android:name=".RegistracionActivity"
             android:label="Registro de Usuario">
         </activity>
         <activity

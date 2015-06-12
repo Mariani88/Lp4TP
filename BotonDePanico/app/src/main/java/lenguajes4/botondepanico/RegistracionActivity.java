@@ -14,13 +14,17 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class RegistrarUsuarioActivity extends Activity {
+public class RegistracionActivity extends Activity {
+
+    boolean usuarioRegistrado=false;
 
     // Progress Dialog
     private ProgressDialog pDialog;
@@ -52,7 +56,7 @@ public class RegistrarUsuarioActivity extends Activity {
 
     public void onClickGuardar(View v){
 
-        // creating new user in background thread
+        // Crea un usuario en background thread
         new CreateNewUser().execute();
 
     }
@@ -68,7 +72,7 @@ public class RegistrarUsuarioActivity extends Activity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(RegistrarUsuarioActivity.this);
+            pDialog = new ProgressDialog(RegistracionActivity.this);
             pDialog.setMessage("Guardando Usuario..");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
@@ -108,9 +112,25 @@ public class RegistrarUsuarioActivity extends Activity {
 
                     //IMPORTANTE: Devolver mensaje de Registrado Exitosamente
 
+                    //Setea el flag de registracion en true
+                    PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
+                    prefs.SavePreferences("UsuarioRegistrado", true); // Storing boolean - true/false
+
+                    //Retorna al Main Activity
+                    Intent intent = new Intent(RegistracionActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
+
                 } else {
 
-                    // failed to create user
+                    // IMPORTANTE: Devolver mensaje de error
+
+                    //Retorna al Main Activity
+                    Intent intent = new Intent(RegistracionActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
                 }
 
             } catch (JSONException e) {

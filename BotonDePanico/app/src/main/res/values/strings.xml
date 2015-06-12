@@ -43,7 +43,8 @@
     <string name="falsaAlarma">Fue una falsa alarma, gracias de todas formas</string>
     <string name="title_activity_opcion_agregar_amigos">opcionAgregarAmigos</string>
 
-    <string name="OpcionAgregarAmigos">Agregar amigos</string>
+    <string name="OpcionAgregarAmigos">Agregar Amigos</string>
+    <string name="OpcionModificarRegistracionDeUsuario">Modificar Datos</string>
 
 
 </resources>
