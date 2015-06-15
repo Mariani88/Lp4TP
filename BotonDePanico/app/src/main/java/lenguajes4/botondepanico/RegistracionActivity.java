@@ -63,7 +63,7 @@ public class RegistracionActivity extends Activity {
         } if(apellido.matches("") || !apellido.matches("[a-zA-Z ]+")) {
             inputApellido.requestFocus();
             inputApellido.setError("Apellido incorrecto, verifique.");
-        } if(edad.matches("") || edad.matches("[a-zA-Z ]+")) {//|| Integer.getInteger(edad)<12 ||  Integer.getInteger(edad)>100) {
+        } if(edad.matches("") || edad.matches("[a-zA-Z ]+")||edad.length()>2) {//|| Integer.getInteger(edad)<12 ||  Integer.getInteger(edad)>100) {
             inputEdad.requestFocus();
             inputEdad.setError("Edad incorrecta, verifique.");
         }else {
