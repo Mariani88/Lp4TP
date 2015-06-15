@@ -15,7 +15,7 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/user_data_nombre"
-        android:text="Nombre"
+        android:hint="Nombre"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"/>
 
@@ -28,7 +28,7 @@
         android:layout_below="@+id/user_data_nombre"
         android:layout_alignRight="@+id/user_data_nombre"
         android:layout_alignEnd="@+id/user_data_nombre"
-        android:text="Apellido"
+        android:hint="Apellido"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -40,7 +40,7 @@
         android:layout_below="@+id/user_data_apellido"
         android:layout_alignRight="@+id/user_data_apellido"
         android:layout_alignEnd="@+id/user_data_apellido"
-        android:text="Telefono"
+        android:hint="Telefono"
         android:layout_centerHorizontal="true"/>
 
     <EditText
@@ -52,7 +52,7 @@
         android:layout_below="@+id/user_data_telefono"
         android:layout_alignRight="@+id/user_data_telefono"
         android:layout_alignEnd="@+id/user_data_telefono"
-        android:text="Edad"
+        android:hint="Edad"
         android:layout_centerHorizontal="true"/>
     />
 

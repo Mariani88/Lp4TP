@@ -36,7 +36,8 @@
         </activity>
         <activity
             android:name=".RegistracionActivity"
-            android:label="Registro de Usuario">
+            android:label="Registro de Usuario"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".OpcionAgregarAmigos"
