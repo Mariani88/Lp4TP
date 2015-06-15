@@ -53,24 +53,40 @@ public class RegistracionActivity extends Activity {
        }
 
     public void onClickGuardar(View v){
-        // Valida datos del formulario
-        final String nombre = inputNombre.getText().toString().trim();
-        final String apellido = inputApellido.getText().toString().trim();
-        final String edad = inputEdad.getText().toString().trim();
-        if(nombre.matches("") || !nombre.matches("[a-zA-Z ]+")) {
-            inputNombre.requestFocus();
-            inputNombre.setError("Nombre incorrecto, verifique.");
-        } if(apellido.matches("") || !apellido.matches("[a-zA-Z ]+")) {
-            inputApellido.requestFocus();
-            inputApellido.setError("Apellido incorrecto, verifique.");
-        } if(edad.matches("") || edad.matches("[a-zA-Z ]+")||edad.length()>2) {//|| Integer.getInteger(edad)<12 ||  Integer.getInteger(edad)>100) {
-            inputEdad.requestFocus();
-            inputEdad.setError("Edad incorrecta, verifique.");
-        }else {
-            // Crea un usuario en background thread
-            new CreateNewUser().execute();
+        
+		boolean isOkForm = validateForm();
+		
+		if(isOkForm) {
+			// Crea un usuario en background thread
+			new CreateNewUser().execute();
         }
     }
+
+	/**
+	* Valida datos del formulario
+	*/
+	private boolean validateForm(){
+
+		boolean isValid = true;
+		final String nombre = inputNombre.getText().toString().trim();
+        final String apellido = inputApellido.getText().toString().trim();
+		final String edad = inputEdad.getText().toString().trim();
+
+		if(nombre.matches("") || !nombre.matches("[a-zA-Z ]+")) {
+             inputNombre.requestFocus();
+             inputNombre.setError("Nombre incorrecto, verifique.");
+			 isValid = false;
+        } if(apellido.matches("") || !apellido.matches("[a-zA-Z ]+")) {
+			 inputApellido.requestFocus();
+             inputApellido.setError("Apellido incorrecto, verifique.");
+			 isValid = false;
+		} if(edad.matches("")) {//|| Integer.getInteger(edad)<12 ||  Integer.getInteger(edad)>100) {
+            inputEdad.requestFocus();
+            inputEdad.setError("Edad incorrecta, verifique.");
+			isValid = false;
+		}
+		return isValid;
+	}
 
     /**
      * Background Async Task to Create new user
