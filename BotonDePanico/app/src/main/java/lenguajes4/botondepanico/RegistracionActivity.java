@@ -3,24 +3,22 @@ package lenguajes4.botondepanico;
 /**
  * Created by Fernando.Ares on 08/06/2015.
  */
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistracionActivity extends Activity {
 
@@ -55,10 +53,23 @@ public class RegistracionActivity extends Activity {
        }
 
     public void onClickGuardar(View v){
-
-        // Crea un usuario en background thread
-        new CreateNewUser().execute();
-
+        // Valida datos del formulario
+        final String nombre = inputNombre.getText().toString().trim();
+        final String apellido = inputApellido.getText().toString().trim();
+        final String edad = inputEdad.getText().toString().trim();
+        if(nombre.matches("") || !nombre.matches("[a-zA-Z ]+")) {
+            inputNombre.requestFocus();
+            inputNombre.setError("Nombre incorrecto, verifique.");
+        } if(apellido.matches("") || !apellido.matches("[a-zA-Z ]+")) {
+            inputApellido.requestFocus();
+            inputApellido.setError("Apellido incorrecto, verifique.");
+        } if(edad.matches("") || edad.matches("[a-zA-Z ]+")) {//|| Integer.getInteger(edad)<12 ||  Integer.getInteger(edad)>100) {
+            inputEdad.requestFocus();
+            inputEdad.setError("Edad incorrecta, verifique.");
+        }else {
+            // Crea un usuario en background thread
+            new CreateNewUser().execute();
+        }
     }
 
     /**
