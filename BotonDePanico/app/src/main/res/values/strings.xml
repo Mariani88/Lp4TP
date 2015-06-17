@@ -22,11 +22,13 @@
     <string name="selectionButton">Seleccionar Contacto</string>
     <string name="sendButton">Enviar</string>
     <string name="textoAEnviar">¡Estoy en problemas ayuda!</string>
+    <string name="textoAEnviarDePrueba">MENSAJE DE PRUEBA: ¡Estoy en problemas ayuda! </string>
     <string name="enviandoMnsj">Enviando mensaje</string>
-    <string name="mnsjAlerta">Estoy en problemas ayuda!!</string>
+
     <string name="mnsjEnviado">Mensaje enviado</string>
     <string name="primeroSeleccioneUnContacto">Primero seleccione un contacto</string>
     <string name="mnsjSinFoto">No se puede mostrar la foto del contacto</string>
+
 
     <!--Ingreso de datos  -->
     <string name="title_activity_datos_usuario">Registración de Datos</string>
@@ -41,6 +43,7 @@
     <string name="msjeContactoEnviadoGuardado">Se ha guardado el usuario notificado para poder cancelar luego</string>
     <string name="msjecontactoEnviadoNoGuardado">No se ha guardado el usuario notificado</string>
     <string name="falsaAlarma">Fue una falsa alarma, gracias de todas formas</string>
+    <string name="pruebaFalsaAlarma">MENSAJE DE PRUEBA:Fue una falsa alarma, gracias de todas formas</string>
     <string name="title_activity_opcion_agregar_amigos">opcionAgregarAmigos</string>
 
     <string name="OpcionAgregarAmigos">Agregar Amigos</string>

@@ -36,7 +36,8 @@ public class EnvioDeSMSActivity extends Activity {
 
     public static final int PICK_CONTACT_REQUEST = 1;
     private Uri contactUri;
-
+    private String message;
+    private String messageFalseAlarm;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,7 +55,7 @@ public class EnvioDeSMSActivity extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            return false;
         }
 
         return super.onOptionsItemSelected(item);
@@ -65,6 +66,11 @@ public class EnvioDeSMSActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_envio_de_sms);
+        Bundle b = this.getIntent().getExtras();
+        this.message =b.getString("MENSAJE DE ALERTA");
+        this.messageFalseAlarm = b.getString("MENSAJE FALSA ALARMA");
+        TextView messageBody = (TextView) findViewById(R.id.messageBody);
+        messageBody.setText(this.message);
     }
 
     public void initPickContacts(View v) {
@@ -116,7 +122,7 @@ public class EnvioDeSMSActivity extends Activity {
         Toast.makeText(this, getString(R.string.enviandoMnsj), Toast.LENGTH_LONG).show();
         if (contactUri != null) {
             if (message == "") {
-               message = getString(R.string.mnsjAlerta);
+               message = this.message;//getString(R.string.mnsjAlerta)
             }
             smsManager.sendTextMessage(
                     getPhone(contactUri),
@@ -173,7 +179,7 @@ public class EnvioDeSMSActivity extends Activity {
 
         // Seteamos el nuevo mensaje
         TextView messageBody = (TextView) findViewById(R.id.messageBody);
-        messageBody.setText(getString(R.string.falsaAlarma));
+        messageBody.setText(this.messageFalseAlarm);
         // enviamos el mensaje
         sendMessage(messageBody);
 

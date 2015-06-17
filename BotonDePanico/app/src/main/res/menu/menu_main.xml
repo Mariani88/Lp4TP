@@ -9,8 +9,8 @@
         app:showAsAction="withText" />
 
     <item
-        android:id="@+id/opcionModificarRegistroDeUsuario"
-        android:title="@string/OpcionModificarRegistracionDeUsuario"
+        android:id="@+id/probarAplicacion"
+        android:title="Probar aplicacion"
         android:orderInCategory="100"
         app:showAsAction="withText" />
 
