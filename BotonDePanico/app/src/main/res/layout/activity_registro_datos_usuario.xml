@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="lenguajes4.botondepanico.RegistracionActivity"
-    android:background="@drawable/fondo">
+    android:background="@drawable/fondo_gradiente">
 
 
     <EditText

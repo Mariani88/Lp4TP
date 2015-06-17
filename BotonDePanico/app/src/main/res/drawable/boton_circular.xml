@@ -6,7 +6,10 @@
         android:startColor="#FFFF0000"
         android:endColor="#ff8c0009"
         android:angle="270"
-        android:thicknessRatio="270"
-        />
+        android:thicknessRatio="270"/>
+
+        <size
+        android:width="50dp"
+        android:height="50dp"/>
 
 </shape>
