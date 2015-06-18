@@ -4,13 +4,22 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.LinkedList;
+import java.util.List;
+
+import dominio.Amigo;
 
 
 public class MainActivity extends Activity {
@@ -20,6 +29,7 @@ public class MainActivity extends Activity {
     private String cuerpoFalsaAlarma;
     //Variable global para la configuracion inicial
     boolean configuracionInicial;
+    private List <Amigo> amigos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +41,15 @@ public class MainActivity extends Activity {
         File archivoAmigos = new File (ruta, "amigos.dat");
         this.configuracionInicial = archivoAmigos.exists();
 
+        this.amigos = new LinkedList<Amigo>();
+
         if (!configuracionInicial ){
 
             setContentView(R.layout.activity_configuracion_inicial);
             intent = new Intent(MainActivity.this, ConfiguracionInicialActivity.class);
             startActivity(intent);
 
-        }
-        else{
+        }else{
 
             setContentView(R.layout.activity_main);
 
@@ -69,7 +80,18 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
 
-                    //Agregar logica para alertar amigos
+                    if (amigos.size() == 0){
+                        cargarAmigos();
+                    }
+
+                    setearCuerpoDeAlerta();
+
+                    for (int i = 0; i < amigos.size(); i++){
+                        Toast.makeText(MainActivity.this, "Enviando SMS de alerta a amigos de la lista, espere...", Toast.LENGTH_LONG).show();
+                        enviarSMS(amigos.get(i), cuerpoDeAlerta);
+                    }
+
+                    Toast.makeText(MainActivity.this, "Mensaje enviado a:"+amigos.size() +"amigos", Toast.LENGTH_LONG).show();
                     campoTipoDeUso.setVisibility(View.INVISIBLE);
                 }
             });
@@ -118,5 +140,47 @@ public class MainActivity extends Activity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+
+    private List<Amigo> cargarAmigos () {
+
+        List<Amigo> amigos = new LinkedList<Amigo>();
+
+        File ruta = new File(Environment.getExternalStorageDirectory(), "Notes");
+        File archivoAmigos = new File(ruta, "amigos.dat");
+
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(archivoAmigos));
+            this.amigos = (List<Amigo>) ois.readObject();
+            ois.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return amigos;
+    }
+
+
+    private void enviarSMS ( Amigo amigo, String mensaje){
+
+        TextView messageBody = (TextView) findViewById(R.id.messageBody);
+        /*
+        Creando nuestro gestor de mensajes
+         */
+        SmsManager smsManager = SmsManager.getDefault();
+
+        /*
+        Enviando el mensaje
+         */
+        smsManager.sendTextMessage(
+                    amigo.getCelular(),
+                    null,
+                    mensaje,
+                    null,
+                    null);
+
     }
 }
