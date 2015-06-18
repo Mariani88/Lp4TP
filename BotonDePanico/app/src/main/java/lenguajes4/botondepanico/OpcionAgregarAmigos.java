@@ -8,9 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.ContactsContract;
+import android.view.ContextMenu;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -34,6 +37,7 @@ public class OpcionAgregarAmigos extends Activity {
     private ListView listaAmigos;
     public static final int PICK_CONTACT_REQUEST = 1;
     private Uri contactUri;
+    private Amigo amigoSeleccionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class OpcionAgregarAmigos extends Activity {
 
         listaAmigos = (ListView)findViewById(R.id.listaDeAmigos);
         listaAmigos.setAdapter(adaptador);
+        registerForContextMenu(listaAmigos);
 
         Button botonAgregarAmigos = (Button)findViewById(R.id.botonAgregarAmigos);
         Button botonContinuar = (Button)findViewById(R.id.botonContinuar);
@@ -67,19 +72,53 @@ public class OpcionAgregarAmigos extends Activity {
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "No tienes amigos cargados", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
+    }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo){
 
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+
+        AdapterView.AdapterContextMenuInfo info =
+                (AdapterView.AdapterContextMenuInfo)menuInfo;
+
+        this.amigoSeleccionado = (Amigo)listaAmigos.getAdapter().getItem(info.position);
+        menu.setHeaderTitle(this.amigoSeleccionado.getNombre());
+
+        inflater.inflate(R.menu.menu_item_amigo, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+
+        switch (item.getItemId()){
+            case R.id.opcionCancelarBorrado:{
+
+                return true;
+            }
+            case R.id.opcionBorradoAmigos:{
+
+                this.amigos.remove(this.amigoSeleccionado);
+                AdaptadorAmigos adaptador = new AdaptadorAmigos(this, amigos);
+                listaAmigos.setAdapter(adaptador);
+                this.guardarAmigos();
+                return true;
+            }
+            default:
+                return super.onContextItemSelected(item);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_opcion_agregar_amigos, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -91,7 +130,7 @@ public class OpcionAgregarAmigos extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            return false;
         }
 
         return super.onOptionsItemSelected(item);
@@ -285,7 +324,6 @@ public class OpcionAgregarAmigos extends Activity {
             e.printStackTrace();
         }
     }
-
 
     @Override  //deshabilita la opcion de volver a la activity anterior
     public void onBackPressed() {

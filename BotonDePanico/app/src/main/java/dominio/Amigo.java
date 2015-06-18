@@ -45,8 +45,3 @@ public class Amigo implements Serializable{
         return this.nombre.hashCode() + this.celular.hashCode();
     }
 }
-
-
-
-
-
