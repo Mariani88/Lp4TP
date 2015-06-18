@@ -45,6 +45,7 @@
     <string name="falsaAlarma">Fue una falsa alarma, gracias de todas formas</string>
     <string name="pruebaFalsaAlarma">MENSAJE DE PRUEBA:Fue una falsa alarma, gracias de todas formas</string>
     <string name="title_activity_opcion_agregar_amigos">opcionAgregarAmigos</string>
+    <string name="title_activity_configuracion_inicial">Configuracion Inicial</string>
 
     <string name="OpcionAgregarAmigos">Agregar Amigos</string>
     <string name="OpcionModificarRegistracionDeUsuario">Modificar Datos</string>

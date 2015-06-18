@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bienvenido a Boton de Panico!"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:id="@+id/textView"
+        android:layout_weight="0.10" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Antes de empezar debes elegir una lista de amigos de tu lista de contactos"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:id="@+id/textView2"
+        android:layout_weight="0.70" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Oprime el boton para configurarla!"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:id="@+id/textView3"
+        android:layout_weight="0.07"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Amigos"
+        android:onClick="onClickAgregarAmigosConfiguracionInicial"
+        android:id="@+id/botonAgregarAmigosConfiguracionInicial"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.10" />
+
+
+</LinearLayout>

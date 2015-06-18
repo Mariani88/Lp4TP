@@ -227,6 +227,8 @@ public class OpcionAgregarAmigos extends Activity {
         }
 
         try{
+            PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
+            prefs.SavePreferences("ConfiguracionInicial", true); // Storing boolean - true/false
             ObjectInputStream ois = new ObjectInputStream( new FileInputStream(archivoAmigos) );
             this.amigos = (List<Amigo>)ois.readObject();
             ois.close();

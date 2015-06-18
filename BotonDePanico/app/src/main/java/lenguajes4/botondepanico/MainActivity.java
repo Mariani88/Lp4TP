@@ -15,42 +15,59 @@ public class MainActivity extends Activity {
     private TextView campoTipoDeUso;
     private String cuerpoDeAlerta;
     private String cuerpoFalsaAlarma;
+    //Variable global para la configuracion inicial
+    boolean configuracionInicial;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
+        configuracionInicial = prefs.GetPreferences("ConfiguracionInicial");
+        Intent intent;
 
-        this.campoTipoDeUso = (TextView)findViewById(R.id.campoTipoDeUso);
-        Button botonAlertarContacto = (Button)findViewById(R.id.botonAlertarContacto);
+        if (configuracionInicial==false){
 
-        botonAlertarContacto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this
-                        , EnvioDeSMSActivity.class);
+            setContentView(R.layout.activity_configuracion_inicial);
+            intent = new Intent(MainActivity.this, ConfiguracionInicialActivity.class);
+            startActivity(intent);
 
-                setearCuerpoDeAlerta();
-                setearCuerpoFalsaAlarma();
+        }
+        else{
 
-                campoTipoDeUso.setVisibility(View.INVISIBLE);
-                Bundle b = new Bundle();
-                b.putString("MENSAJE DE ALERTA", cuerpoDeAlerta);
-                b.putString("MENSAJE FALSA ALARMA", cuerpoFalsaAlarma);
-                intent.putExtras(b);
-                startActivity(intent);
-            }
-        });
+            setContentView(R.layout.activity_main);
 
-        Button botonAlertarAmigos = (Button)findViewById(R.id.botonAlertarAmigos);
+            this.campoTipoDeUso = (TextView) findViewById(R.id.campoTipoDeUso);
+            Button botonAlertarContacto = (Button) findViewById(R.id.botonAlertarContacto);
 
-        botonAlertarAmigos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            botonAlertarContacto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this
+                            , EnvioDeSMSActivity.class);
 
-                //Agregar logica para alertar amigos
-                campoTipoDeUso.setVisibility(View.INVISIBLE);
-            }
-        });
+                    setearCuerpoDeAlerta();
+                    setearCuerpoFalsaAlarma();
+
+                    campoTipoDeUso.setVisibility(View.INVISIBLE);
+                    Bundle b = new Bundle();
+                    b.putString("MENSAJE DE ALERTA", cuerpoDeAlerta);
+                    b.putString("MENSAJE FALSA ALARMA", cuerpoFalsaAlarma);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                }
+            });
+
+            Button botonAlertarAmigos = (Button) findViewById(R.id.botonAlertarAmigos);
+
+            botonAlertarAmigos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //Agregar logica para alertar amigos
+                    campoTipoDeUso.setVisibility(View.INVISIBLE);
+                }
+            });
+        }
     }
 
     private void setearCuerpoDeAlerta() {

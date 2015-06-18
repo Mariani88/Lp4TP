@@ -43,6 +43,11 @@
             android:label="@string/title_activity_opcion_agregar_amigos"
             android:screenOrientation="portrait">>
         </activity>
+        <activity
+            android:name=".ConfiguracionInicialActivity"
+            android:label="@string/title_activity_configuracion_inicial"
+            android:screenOrientation="portrait">>
+        </activity>
     </application>
 
 </manifest>
