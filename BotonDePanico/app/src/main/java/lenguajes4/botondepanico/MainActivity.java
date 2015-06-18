@@ -37,11 +37,9 @@ public class MainActivity extends Activity {
         PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
         configuracionInicial = prefs.GetPreferences("ConfiguracionInicial");
         Intent intent;
-        File ruta = new File(Environment.getExternalStorageDirectory(), "Notes");
-        File archivoAmigos = new File (ruta, "amigos.dat");
-        this.configuracionInicial = archivoAmigos.exists();
-
         this.amigos = new LinkedList<Amigo>();
+
+        this.configuracionInicial = this.hayAmigos();
 
         if (!configuracionInicial ){
 
@@ -143,7 +141,7 @@ public class MainActivity extends Activity {
     }
 
 
-    private List<Amigo> cargarAmigos () {
+    private void cargarAmigos () {
 
         List<Amigo> amigos = new LinkedList<Amigo>();
 
@@ -159,8 +157,6 @@ public class MainActivity extends Activity {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-        return amigos;
     }
 
 
@@ -182,5 +178,22 @@ public class MainActivity extends Activity {
                     null,
                     null);
 
+    }
+
+    private boolean hayAmigos (){
+
+        File ruta = new File(Environment.getExternalStorageDirectory(), "Notes");
+        File archivoAmigos = new File (ruta, "amigos.dat");
+        boolean hayAmigos = archivoAmigos.exists();
+
+        if (hayAmigos){
+            this.cargarAmigos();
+
+            if (this.amigos.size() == 0){
+                hayAmigos = false;
+            }
+        }
+
+        return hayAmigos;
     }
 }
