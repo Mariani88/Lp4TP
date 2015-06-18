@@ -31,7 +31,11 @@ public class Amigo implements Serializable{
         if (!iguales && obj!= null && obj instanceof Amigo ){
 
             Amigo obje = (Amigo)obj;
-            iguales = this.celular.equals( obje.getCelular() ) && this.nombre.equals( obje.getNombre() );
+
+            if (obje.getNombre() != null && obje.getCelular()!=null){
+                iguales = this.celular.equals( obje.getCelular() ) && this.nombre.equals( obje.getNombre() );
+            }
+
         }
 
         return iguales;

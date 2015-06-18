@@ -3,11 +3,14 @@ package lenguajes4.botondepanico;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.File;
 
 
 public class MainActivity extends Activity {
@@ -24,8 +27,11 @@ public class MainActivity extends Activity {
         PreferencesHelper prefs = new PreferencesHelper(getApplicationContext());
         configuracionInicial = prefs.GetPreferences("ConfiguracionInicial");
         Intent intent;
+        File ruta = new File(Environment.getExternalStorageDirectory(), "Notes");
+        File archivoAmigos = new File (ruta, "amigos.dat");
+        this.configuracionInicial = archivoAmigos.exists();
 
-        if (configuracionInicial==false){
+        if (!configuracionInicial ){
 
             setContentView(R.layout.activity_configuracion_inicial);
             intent = new Intent(MainActivity.this, ConfiguracionInicialActivity.class);

@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -46,7 +48,7 @@ public class OpcionAgregarAmigos extends Activity {
         listaAmigos.setAdapter(adaptador);
 
         Button botonAgregarAmigos = (Button)findViewById(R.id.botonAgregarAmigos);
-
+        Button botonContinuar = (Button)findViewById(R.id.botonContinuar);
 
         botonAgregarAmigos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +56,22 @@ public class OpcionAgregarAmigos extends Activity {
                 cargarAmigo();
             }
         });
+
+
+        botonContinuar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (amigos.size() > 0) {
+                    Intent intent = new Intent(OpcionAgregarAmigos.this, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "No tienes amigos cargados", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
+
 
     }
 
@@ -114,14 +132,24 @@ public class OpcionAgregarAmigos extends Activity {
 
     private void renderContact(Uri uri) {
 
-        Amigo amigo = new Amigo (getName(uri),getPhone(uri));
+        String nombre = getName(uri);
+        String telefono = getPhone(uri);
 
+        if (nombre !=null && telefono != null){
+            Amigo amigo = new Amigo (nombre, telefono);
 
-        if ( !amigos.contains(amigo) && amigo.getCelular() !=null && amigo.getNombre() !=null) {
-            amigos.add(amigo);
-            AdaptadorAmigos adaptador = new AdaptadorAmigos(this, amigos);
-            listaAmigos.setAdapter(adaptador);
-            this.guardarAmigos();
+            if ( !amigos.contains(amigo) ) {
+                amigos.add(amigo);
+                AdaptadorAmigos adaptador = new AdaptadorAmigos(this, amigos);
+                listaAmigos.setAdapter(adaptador);
+                this.guardarAmigos();
+            }else{
+                Toast.makeText(getApplicationContext(), "Ya tienes al contacto como amigo", Toast.LENGTH_SHORT).show();
+            }
+
+        }else{
+            Toast.makeText(getApplicationContext(), "Error, configura opciones de visualizacion de" +
+                    " la lista de contactos a SIM o Telefono", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -222,7 +250,7 @@ public class OpcionAgregarAmigos extends Activity {
 
         File archivoAmigos = new File (ruta, "amigos.dat");
 
-        if ( !archivoAmigos.exists() ){
+        if ( !archivoAmigos.exists() ){ //si no existe el archivo, lo crea
             this.guardarAmigos();
         }
 
@@ -256,5 +284,11 @@ public class OpcionAgregarAmigos extends Activity {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+
+    @Override  //deshabilita la opcion de volver a la activity anterior
+    public void onBackPressed() {
+        return;
     }
 }
